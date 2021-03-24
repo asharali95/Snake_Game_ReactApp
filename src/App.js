@@ -1,8 +1,12 @@
 import './App.css';
+import Board from './Component/Board/Board';
 
 function App() {
   return (
-    <div className="App"></div>
+    <div className="App">
+      <h1>SNAKE GAME</h1>
+      <Board/>
+    </div>
   );
 }
 

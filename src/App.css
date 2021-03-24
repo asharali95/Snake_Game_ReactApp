@@ -1,0 +1,12 @@
+.App{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    text-align: center;
+    background-color: rgb(77, 77, 77);
+    font-size: 62.5%;
+    color: white;
+
+}
