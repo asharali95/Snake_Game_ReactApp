@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Board.css";
-import {createBoard} from "../../utility"
+import {createBoard, getDirectionFromKey,randomNumberFromInterval} from "../../utility"
 
 class LinkedListNode{
     constructor(value) {
@@ -22,7 +22,31 @@ export const BOARD_SIZE=10
 const Board = () => {
     var [board, setBoard] = useState(createBoard(BOARD_SIZE))
     var [snakeCells, setSnakeCells] = useState(new Set([44]))
+    var [foodCell, setFoodCell] = useState(48)
     var [snake , setSnake ] = useState(new SinglyLinkedList(44))
+    var [direction, setDirection] = useState("RIGHT");
+
+    window.addEventListener("keydown", (e) =>{
+        var newDirection = getDirectionFromKey(e.key);
+        console.log(newDirection);
+        // if(newDirection!='') setDirection(newDirection);
+    })
+    // var moveSnake = () =>{
+    //     const currentHeadCoords = {
+    //         row: snake.head.value;
+    //         col: snake.head.value;
+    //     }
+    // }
+    const handleFoodConsumption = () =>{
+        const possibleCellVal = BOARD_SIZE*BOARD_SIZE;
+        let nextFoodCell;
+        while(true){
+          nextFoodCell = randomNumberFromInterval(1,possibleCellVal);
+          if (snakeCells.has(nextFoodCell) || nextFoodCell === foodCell) continue; 
+          break;
+        }
+        setFoodCell(nextFoodCell)
+      }
 
 
   return (
@@ -35,7 +59,6 @@ const Board = () => {
        </div>
    ))}   
   </div>
-  
   )
 
 };
